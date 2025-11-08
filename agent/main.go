@@ -16,9 +16,10 @@ import (
 	"github.com/shirou/gopsutil/v3/disk"
 	"github.com/shirou/gopsutil/v3/host"
 	"github.com/shirou/gopsutil/v3/mem"
-	"github.com/shirou/gopsutil/v3/net"
+	gnet "github.com/shirou/gopsutil/v3/net"
 	yaml "gopkg.in/yaml.v3"
 )
+
 
 type Config struct {
 	ListenAddr           string `yaml:"listen_addr"`
@@ -89,7 +90,7 @@ func getHostname(override string) string {
 }
 
 func sampleNet() (tx, rx uint64) {
-	counters, _ := net.IOCounters(true)
+	counters, _ := gnet.IOCounters(true)
 	var totalTx, totalRx uint64
 	for _, c := range counters {
 		// skip loopback
