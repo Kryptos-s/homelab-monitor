@@ -1,0 +1,19 @@
+# Dashboard configuration (YAML)
+listen_addr: "0.0.0.0:8080"
+refresh_seconds: 2
+history_limit: 500   # per node in memory
+nodes:
+  - name: "node-a"
+    url: "http://192.168.1.10:9876"
+    group: "lab"
+    alerts:
+      cpu_pct: 90
+      mem_pct: 90
+      disk_pct: 90
+      tx_bps: 100000000  # 100 Mbps
+      rx_bps: 100000000
+  - name: "node-b"
+    url: "http://192.168.1.11:9876"
+    group: "lab"
+    alerts:
+      cpu_pct: 90

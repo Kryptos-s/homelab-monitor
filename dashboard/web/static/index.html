@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Homelab Monitor</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <header>
+    <h1>Homelab Monitor</h1>
+    <div class="actions">
+      <a href="/export/csv">Export CSV</a>
+      <a href="/export/json">Export JSON</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls">
+      <label>Filter group:
+        <select id="groupFilter">
+          <option value="">All</option>
+          {{ range .Groups }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ end }}
+        </select>
+      </label>
+      <span id="ts"></span>
+    </div>
+
+    <table id="nodes">
+      <thead>
+        <tr>
+          <th>Node</th><th>Group</th><th>CPU %</th><th>RAM %</th>
+          <th>Disk % max</th><th>Tx (B/s)</th><th>Rx (B/s)</th>
+          <th>Latency (ms)</th><th>Uptime</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

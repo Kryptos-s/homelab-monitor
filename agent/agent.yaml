@@ -1,0 +1,4 @@
+# Agent configuration (YAML)
+listen_addr: "0.0.0.0:9876"   # Where the agent serves /metrics
+hostname_override: ""         # Leave empty to auto-detect
+refresh_window_seconds: 2     # Internal window to compute net throughput

@@ -1,0 +1,22 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Build agent
+        run: |
+          cd agent
+          go mod tidy
+          GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o ../dist/agent-linux-amd64 .
+          GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o ../dist/agent-windows-amd64.exe .
+      - name: Build dashboard
+        run: |
+          cd dashboard
+          go mod tidy
+          GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o ../dist/dashboard-linux-amd64 .
+          GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o ../dist/dashboard-windows-amd64.exe .
